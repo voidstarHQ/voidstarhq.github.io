@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="responsive">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>anything can be numbers, numbers can be anything... What does data look like, in color and in 3D.</title>
+        <style type="text/css">
+            body {
+                background-color: black;
+            }
+        </style>
+        <script type="text/javascript">
+            // From https://stackoverflow.com/a/36012192/1418165 TODO: use https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+
+            // the list of our video elements
+            var videos = document.querySelectorAll('video');
+            // an array to store the top and bottom of each of our elements
+            var videoPos = [];
+            // a counter to check our elements position when videos are loaded
+            var loaded = 0;
+
+            // Here we get the position of every element and store it in an array
+            function checkPos() {
+              // loop through all our videos
+              for (var i = 0; i < videos.length; i++) {
+
+                var element = videos[i];
+                // get its bounding rect
+                var rect = element.getBoundingClientRect();
+                // we may already have scrolled in the page
+                // so add the current pageYOffset position too
+                var top = rect.top + window.pageYOffset;
+                var bottom = rect.bottom + window.pageYOffset;
+                // it's not the first call, don't create useless objects
+                if (videoPos[i]) {
+                  videoPos[i].el = element;
+                  videoPos[i].top = top;
+                  videoPos[i].bottom = bottom;
+                } else {
+                  // first time, add an event listener to our element
+                  element.addEventListener('loadeddata', function() {
+                      if (++loaded === videos.length - 1) {
+                        // all our video have ben loaded, recheck the positions
+                        // using rAF here just to make sure elements are rendered on the page
+                        requestAnimationFrame(checkPos)
+                      }
+                    })
+                    // push the object in our array
+                  videoPos.push({
+                    el: element,
+                    top: top,
+                    bottom: bottom
+                  });
+                }
+              }
+            };
+            // an initial check
+            checkPos();
+
+
+            var scrollHandler = function() {
+              // our current scroll position
+
+              // the top of our page
+              var min = window.pageYOffset;
+              // the bottom of our page
+              var max = min + window.innerHeight;
+
+              videoPos.forEach(function(vidObj) {
+                // the top of our video is visible
+                if (vidObj.top >= min && vidObj.top < max) {
+                  // play the video
+                  vidObj.el.play();
+                }
+
+                // the bottom of the video is above the top of our page
+                // or the top of the video is below the bottom of our page
+                // ( === not visible anyhow )
+                if (vidObj.bottom <= min || vidObj.top >= max) {
+                  // stop the video
+                  vidObj.el.pause();
+                }
+
+              });
+            };
+            // add the scrollHandler
+            window.addEventListener('scroll', scrollHandler, true);
+            // don't forget to update the positions again if we do resize the page
+            window.addEventListener('resize', checkPos);
+        </script>
+    </head>
+    <body>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/02e13a44fe3a1a1a0c0f97ac6e3d9dc9aac2261517c17c37be9de45afa062f57.wasm.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/0cc207c76ecd5fa2e06a74a24fd02e44c6c7f5513f6d834e89f7e41e169a0fb1.lines.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/0cc5287d20ae9879e2327d966e89be3f54760a426f0dbdb394f1c26d1e2ceab9.tiff.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/0ccebe7536a4bdea18c704f0809be307f54eb0bf278db00c7d08ed5092b4665f.49.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/0f2fd226856965e017b157a1c90401346aa5b0988ea83aae36d66f63f3437da4.dds.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/10b384442424d7fcc655f6c70849ae0b379c6d189d981264ecb6e433c3775dd4.mp4.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/144ff251ce3e96dcd4583890f381a40e0b6643bb3d464b175087add84849e159.mp3.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/169a3dbb068cf4841b48c821f33fe5a6c69d99f3974c247d3424569453d2786c.bin.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/189ef73c808a81ccb7fd6dd9a8695c199bf5b0ab41cc48757aaa53a4dfd9fd33.udn.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/1e8b55c232140e08967138207291fad43533856c5ebf738595011c3f2d678710.wav.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/1f779281902536d99b6c64870a4f157b61a127585e89a502eddeaa238340249d.pcapng.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/221afe60a6f5d7e31dd3791704a9f1f1eee490def5d9563f7349059bd1123aa1.mp4.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/283a731fa3784505f45e6e011b30b0522ad6775279206a5f1d78f8af20ef6877.bin.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/33a2e0cf8bdc7393e12503ab0996db90ad44b76324110aa931b84624ca1e9b56.lines.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/353f18e954582e4e79a0d41ce8d14dc0abdcf128120a1365d688f8a07389e8d5.vvgl.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/356f627f9e10a4fad8902d5a3a927a0980db99eea6077a1af3f7794492af06a0.pkl.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/38bc01ce72638fd3515d02afc2def0b92e79ecc8e85507404897572d66722f9a.wav.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/3bc182eb9f33925d9e58b5c8d59308a760f4adea8f282370e428c51212c26633.tflite.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/431929f883c4c1660c6db62ce77c1f58f6e8b3e1fbebc3896130fab041e5436f.uuu.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/4357158df42b2c8cd971d44e5cf58e2477fde40a3ba6d385742102c9905c6ab7.bin.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/4aef0066e8e4bad65018ec85d46b902303155ec2d8f049f3803e571005a90ff0.DLL.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/4ddf29c353e2a4f3a3556800dffd3138b19131ffb6166d1d34a9b79d7482a4e6.dsn6.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/5dcbb89f205bf72bce0cbd336e5c0fff8761d588f6882fd04b28c8ace4cf80ae.db-shm.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/6100ba3864c73c49e88117b9cc364fc8a0163a44c4b597d7ec11584f6ce92442.tga.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/651fcb501ec009663234edb00f57e5d578decf4218754f68ff1cfaf12327d939.bmp.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/6541ea717bf6c3706e69bd024f3f234298f0159154c9b5a17969a37a3cba9cd8.tiff.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/690bdfb740c4d30aac0ba2b5db8338aac5d741d2dbf3015e283db1317143ca9a.tga.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/6be83b0c75bacad44241f46234948a3a2dcb557a282a8544c477e56a73e9113a.mp4.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/74d4ce76e67a5dd376655fff74231e026893198bd92458ab660c3fddb7c8288f.tif.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/79eb1c7979930d14b8ee5ce6fb754bd5d56d2532c563da35e39750f800b05c33.blend.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/7a646658ead1b5b16d39186f26beb0cb30666ec2e46b258d90508eca142c4b12.wbf.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/7d7d52f9ee3979a7b20111bee13c2fbfd9fef30bd3935d32ad5d295be3d1a520.blend.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/7dcf7e2814526e42720fa7494a4d8953ca840b6b96d484e1c1464b1a651cdde4.wav.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/7edd0ad9ed769be3c73e352fde32996bac811bbae22ac837ea87ac0da3195fa5.wav.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/81d6b923ad22f46bcb4e2f6c2c7a19321f6d90f85c1c995fbc1c86dba628db1e.gvdb.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/8744bf8662b4469a872751041aa90e431982b478fea7ec5df3c37458231f1b57.vox.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/89bd5eb2d1df064a360ca71fc0407aae190c92b927bad752e1746296b45664d0.rdoc.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/8a17bcce4da60396ed1743c288e2579fcc952ccff5380c335e57a6f32d0e31e4.tiff.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/8c2ea4bd22fcfb98e4d478fcf30b96d3545a8841c5cd9acfdf22845e04272089.bt.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/8d02ed5470392d14cef1a5b98f3254fc2dc906322296e20ee9bfb514c750e7ae.wav.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/8f9c86a3355db0fd46c959edadd55b840404639bb7742294ab385a67de36bca4.dds.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/94b424ac90d9429098283a6eaf3e5e69b002a88221fad17cbb959491b2405706.exe.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/95379450efdb9d0a339a6a8dc31efad0432d0adf0d831d5e5a346372d5ce2f9c.DDS.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/97b51805afcb24f103dd796e5b213e978ce3c1725463f7c25aceb55b099f7ed6.grf.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/99dc8cef417e2e49d28ac2040da65a7feb68c3726620dd9a5f53b27fd7843aed.qt_compose_cache_little_endian.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/9aa35b38467af1739797a21fd49f11d1428de47f49e9fe4860287aef6eea2a3a.UDR.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/9cfb25b2994e53946b26956f8b3957ddbc6085e3697e977287fb35a0ca54f355.blend.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/a31cce739e9f5b9b08a15ef5ff90c500a46e96bd2c87f329d58a008dfd6c42ff.tflite.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/a3d05aeda18bbdd60e8169dd75e78b4bb33d704eb809e0e79d2adf4bcc602ada.tif.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/a5d44ff5e34824cb5452167d92d27cb052510c2e70ba51020487a98af253cf7a.dll.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/a96161fbbb7bf926ba8f9a9b1514e11c680ebe530b22827c49b71110bc74d638.mo.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/ae2f597aa5a793691aa33754db768d3cc005c0cc5c4d51813d3edf6dab2a12c2.mp4.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/b17bf945c188a4933b773b6665867f2d8cd7323a281cc345f9a3e1008dffd5d9.sqlite3-journal.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/b2ee0ccf6347ffde1aab7f5eb04ef6f83c4e077db082286a834b99d6baafe782.kgb.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/b5626b93f3c7a007294d1d698464aa9e6f95cee10d0641bc3e07c66cafda0b2f.dsn6.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/c066be15a98eae721591c3c3c9171103f4d7e5b4acb84550c5f92a437d026b54.blend.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/c71800ed570444cd56ecfe9d5bc76ebfbc4454b2517f23436ff7e22014806197.dcm.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/c94fead99424cc2644bee5ecab1f7608a0aad7319f9709df081c378201fed5f4.resS.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/cb03d6d4848912976722ea50d7ab84a292e4ca458e2e12552fa82ae2667ac01f.mysql.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/d87c1eaeaa191a9693da6e0710964e0483d3309b9dd53c001c9153af1f0becdd.blend.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/d9a5f9da1bc59ffabafa09d1a92b015c6313bf9c54353436a7b4c67adc5a6fd3.dll.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/daa1d3493dd5cd40f2d8367ae11e87628f3039fa85a439071ed7f8ab2e5b0b9a.xcf.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/daeb855f6c484569ea910e878a2ac7c8f6d53eeaa262d4fa3f071ffd2cc9a1e8.vpk.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/dd131550c21950c39645e5b6d52ceb35470d7f9866e5b0e49f0e66c46d58edae.xraw.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/dddfb98874c11bbc3bc92fb1bafe9bde6695bbda7a2af44e31e940811a1f01a7.mp4.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/e678b5afc1ed6873f19968f8acba51afa7650d3ce5178b34ee82c02a16c3b461.mp4.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/eb8002393b904dc9773f8456d58070ff30927238531e482110c27b4e77f60d66.webp.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+        <video preload=auto loop muted autoplay width="350">
+            <source src="/mp4/f87c20c30b41716c29bcdb4b778236a51ddf34572d167cdf88b2220adbf12b69.vox.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+    </body>
+</html>
