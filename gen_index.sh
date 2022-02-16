@@ -1,9 +1,7 @@
 #!/bin/bash -eu
 set -o pipefail
 
-# find mp4/ -type f -size -2M -o -size 2M  | while read -r f; do echo "$(ls -lh $f)"; done
-# find mp4/ -type f -size -2M -o -size 2M  | while read -r f; do git add "$f"; done
-
+find mp4/ -type f -size -2M -o -size 2M  | while read -r f; do git add "$f"; done
 
 cat <<EOF
 <!DOCTYPE html>
