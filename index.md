@@ -3,11 +3,19 @@ published: true
 layout: default
 ---
 
+<p align="center">
+	<strong><code>voidstar</code></strong> projection of file <a href="https://github.com/voidstarHQ/files002/blob/main/0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng">0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng</a>.
+	<video preload=auto loop muted autoplay>
+		<source src="./mp4/0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng.mp4" type="video/mp4">
+		Sorry, your browser does not support embedded videos.
+	</video>
+</p>
+
 
 
 The actual file being represented below [is data/BigPictureBG.tga](https://github.com/voidstarHQ/voidstar/blob/master/data/BigPictureBG.tga).
 
-<p align="center"> <video preload=auto loop muted autoplay width="350"> <source src="https://user-images.githubusercontent.com/278727/140719903-40c56818-0b5c-44ec-bbab-0e9b931c2023.mp4" type="video/mp4"> Sorry, your browser does not support embedded videos. </video> </p>
+<p align="center"> <video preload=auto loop muted autoplay> <source src="https://user-images.githubusercontent.com/278727/140719903-40c56818-0b5c-44ec-bbab-0e9b931c2023.mp4" type="video/mp4"> Sorry, your browser does not support embedded videos. </video> </p>
 
 ## More info, references & inspiration
 
