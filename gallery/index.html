@@ -44,7 +44,7 @@
 
                     if (mp4view.src !== mp4link) {
                         urlbar.searchParams.set('mp4link', mp4link);
-                        window.history.pushState(null, '', urlbar.toString());
+                        window.history.pushState(null, '', urlbar.toString()); // TODO: fix so back() actually reloads the right video
                         window.location.href = urlbar.toString();
                     }
                 }, refreshAfterMs);
