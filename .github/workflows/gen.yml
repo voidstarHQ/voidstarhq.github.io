@@ -1,0 +1,31 @@
+name: Gen
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  gen-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Gen index
+      run: ./copy_README.sh >index.md
+    - run: git --no-pager diff --exit-code
+
+    - name: Gen gallery-desktop
+      run: ./gen_gallery-desktop.sh >gallery-desktop/index.html
+    - run: git --no-pager diff --exit-code
+
+    - name: Gen mp4s.json
+      run: ./gen_mp4s.sh
+    - run: git --no-pager diff --exit-code
+
+  # test-links:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  # TODO: fail on dead links
