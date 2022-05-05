@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="responsive">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>voidstar ~ Mobile Gallery</title>
+        <style type="text/css">
+            body {
+                background-color: black;
+            }
+        </style>
+        <script type="text/javascript">
+            var doit = (smalls) => {
+                const refreshAfterMs_ = 10000;
+                var refreshAfterMs = refreshAfterMs_;
+
+                const mp4link_ = smalls[0];
+                var mp4link = mp4link_;
+
+                for (const [key, value] of new URLSearchParams(window.location.search)) {
+                    if (key === "refreshAfterMs") {
+                        refreshAfterMs = parseInt(value);
+                    }
+                    if (key === 'mp4link') {
+                        mp4link = value;
+                    }
+                }
+
+                var video = document.getElementById('video');
+                var mp4view = document.createElement('source');
+                mp4view.setAttribute('src', mp4link);
+                mp4view.setAttribute('type', 'video/mp4');
+                video.appendChild(mp4view);
+                video.play();
+
+                setInterval(function() {
+                    let urlbar = new URL(window.location);
+                    if (refreshAfterMs != refreshAfterMs_) {
+                        urlbar.searchParams.set('refreshAfterMs', refreshAfterMs);
+                    }
+
+                    var mp4link = smalls[Math.floor(Math.random()*smalls.length)];
+
+                    if (mp4view.src !== mp4link) {
+                        urlbar.searchParams.set('mp4link', mp4link);
+                        window.history.pushState(null, '', urlbar.toString()); // TODO: fix so back() actually reloads the right video
+                        window.location.href = urlbar.toString();
+                    }
+                }, refreshAfterMs);
+            };
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+                fetch('/mp4s.json')
+                .catch(console.error)
+                .then(res => res.json())
+                .then(res => res['small'])
+                .then(res => smalls = res)
+                .then(res => doit(res));
+            });
+        </script>
+    </head>
+    <body>
+        <p align="center">
+            <video id="video" preload=auto loop muted autoplay></video>
+        </p>
+    </body>
+</html>

@@ -100,7 +100,7 @@ cat <<EOF
 EOF
 
 for f in mp4/*; do
-	[[ "$f" = "$(git ls-files "$f")" ]] || continue
+  [[ "$f" = "$(git ls-files "$f")" ]] || continue
 
 cat <<EOF
         <video preload=auto loop muted autoplay width="350">

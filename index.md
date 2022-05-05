@@ -4,7 +4,7 @@ layout: default
 ---
 
 <p align="center">
-	<strong><code>voidstar</code></strong> projection of file <a href="https://github.com/voidstarHQ/files002/blob/main/0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng">0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng</a>.
+	<strong><code>voidstar</code></strong> projection of file <a href="https://github.com/voidstarHQ/files002/blob/main/0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng"><code>files002/0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng</code></a>
 	<video preload=auto loop muted autoplay>
 		<source src="./mp4/0f0688bf17caac93008cf791f33fa063e42d150c66e24cbac617b1fd01ecd00a.pcapng.mp4" type="video/mp4">
 		Sorry, your browser does not support embedded videos.
@@ -13,15 +13,20 @@ layout: default
 
 
 
-The actual file being represented below [is data/BigPictureBG.tga](https://github.com/voidstarHQ/voidstar/blob/master/data/BigPictureBG.tga).
 
-<p align="center"> <video preload=auto loop muted autoplay> <source src="https://user-images.githubusercontent.com/278727/140719903-40c56818-0b5c-44ec-bbab-0e9b931c2023.mp4" type="video/mp4"> Sorry, your browser does not support embedded videos. </video> </p>
+<p align="center">
+  The actual file being represented below <a href="https://github.com/voidstarHQ/voidstar/blob/master/data/BigPictureBG.tga">is <code>data/BigPictureBG.tga</code></a> (<a href="https://vimeo.com/manage/videos/207613754">vimeo</a>)
+  <video preload=auto loop muted autoplay>
+    <source src="https://user-images.githubusercontent.com/278727/140719903-40c56818-0b5c-44ec-bbab-0e9b931c2023.mp4" type="video/mp4">
+      Sorry, your browser does not support embedded videos.
+  </video>
+</p>
 
 ## More info, references & inspiration
 
 1. [Greg Conti](https://youtu.be/XATakIdyZdk?t=23m23s) (*loud and low quality audio*)
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XATakIdyZdk?start=1413" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p align="center"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XATakIdyZdk?start=1413" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
 2. [Blackhat 2010 - Voyage of the reverser - Sergey Bratus Greg Conti](https://www.youtube.com/watch?v=T3qqeP4TdPA)
 1. [Conti's & Bratus' `binvis`](https://github.com/rebelbot/binvis)
@@ -118,7 +123,9 @@ bazel build voidstar
 * `bazel` that you can use through [bazelisk](https://github.com/bazelbuild/bazelisk)
 
 ## Gallery
-Desktop-only gallery [here](./gallery-desktop/index.html) (*might crash your phone*).
+Checkout the [mobile friendly gallery](./gallery/)!
+
+Desktop-only gallery [here](./gallery-desktop/) (*might crash your phone*).
 
 ## Files
 
