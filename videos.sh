@@ -32,7 +32,7 @@ run() {
     args+=(--output="$tmp"/)
     args+=(--target=video-gcc)
     args+=(--build-arg=FILE="$url")
-    args+=(--build-arg=WxHxD=800x600x24)
+    args+=(--build-arg=WxHxD=800x800x24)
     if [[ "$VOIDSTAR_REPO" =~ ^https: ]]; then
         args+=("$VOIDSTAR_REPO")
     else
